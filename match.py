@@ -123,5 +123,19 @@ b11.grid(row=2, column=3)
 my_label = Label(root, text="")
 my_label.pack(pady=20)
 
+#Create a menu
+my_menu = Menu(root)
+root.config(menu=my_menu)
+
+#Create a Dropwdown for Options
+    #tearoff createsa floating menu separate from teh game window
+option_menu = Menu(my_menu, tearoff=False)
+    #add_cascade is a tkinter widget
+my_menu.add_cascade(label="Options", menu=option_menu)
+    #add_command calls the function defined above
+option_menu.add_command(label="Reset Game", command=reset)
+option_menu.add_separator()
+option_menu.add_command(label="Exit Game", command=root.quit)
+
 
 root.mainloop()
