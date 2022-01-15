@@ -37,11 +37,11 @@ def reset():
     #Reset the labels
     my_label.config(text=" ")
 
-    # Reset our Tiles
-	button_list = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11]
-	# Loop thru buttons and change colors
-	for button in button_list:
-		button.config(text=" ", bg="SystemButtonFace", state="normal")
+    #Reset the board
+    button_list = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11]
+    #Iterate through the buttons and change the colors
+    for button in button_list:
+        button.config(text=" ", bg="SystemButtonFace", state="normal")
 
 #Win function
 def win():
@@ -52,7 +52,7 @@ def win():
 
 #event listener for buttons
 def button_click(b, number):
-    global count, answer_list, answer_dict
+    global count, answer_list, answer_dict, winner
 
     if b["text"] == ' ' and count < 2:
         b["text"] = matches[number]
@@ -72,6 +72,10 @@ def button_click(b, number):
             count = 0
             answer_list = []
             answer_dict = {}
+            #increase Win counter
+            winner += 1
+            if winner == 6:
+                win()
         else:
             my_label.config(text="Try again!")
             count = 0
